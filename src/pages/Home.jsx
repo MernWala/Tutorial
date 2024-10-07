@@ -7,7 +7,7 @@ const Home = ({ setModalShow, myString, setMyString, theme, setTheme }) => {
 
     useEffect(() => {
       let savedTheme = localStorage.getItem('theme')
-      setTheme(savedTheme)
+      setTheme(savedTheme ?? 'dark')
     }, [setTheme])
 
     const handleUpperCase = () => {
