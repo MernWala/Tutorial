@@ -5,6 +5,7 @@ const Button = (props) => {
         <button type="button" onClick={props?.onClick} className={`
             tw-px-3
             tw-py-1
+            tw-flex-grow-[1]
             ${props?.varient === 'light' && 'tw-bg-[#3A3A3A] hover:tw-bg-[#2e2e2e]'}
             ${props?.varient === 'dark' && 'tw-bg-[#3A3A3A] hover:tw-bg-[#2e2e2e]'}
             ${props?.varient === 'blue' && 'tw-bg-[#404DC1] hover:tw-bg-[#35409f]'}
@@ -16,6 +17,7 @@ const Button = (props) => {
             tw-rounded-sm
             tw-text-white
             tw-tracking-wide
+            tw-max-w-[200px]
         `}>
             {props?.name}
         </button>
