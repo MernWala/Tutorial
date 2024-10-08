@@ -1,101 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Button from '../components/Button'
 import ToggleTheme from '../components/ToggleTheme'
-import toast from 'react-hot-toast'
+import DataContext from '../context/data/DataContext'
+import FunctionContext from '../context/functions/FunctionContext'
 
-const Home = ({ setModalShow, myString, setMyString, theme, setTheme }) => {
+const Home = () => {
 
-    useEffect(() => {
-      let savedTheme = localStorage.getItem('theme')
-      setTheme(savedTheme ?? 'dark')
-    }, [setTheme])
+    const {
+        theme, myString, setMyString, setShow
+    } = useContext(DataContext)
 
-    const handleUpperCase = () => {
-        toast.success("Converted to Uppercase")
-        setMyString(myString.toUpperCase())
-    }
-
-    const handleLowerCase = () => {
-        toast.success("Converted to Lowercase")
-        setMyString(myString.toLowerCase())
-    }
-
-    const handleCapitilizeCase = () => {
-        toast.success("Text Capitilize")
-
-        setMyString(prev => {
-            return prev.split(" ").map(ele => {
-                return ele.substring(0, 1).toUpperCase() + ele.substring(1).toLowerCase()
-            }).join(" ")
-        })
-    }
-
-    const handleCamelCase = () => {
-        toast.success("Converted to Camel Case")
-
-        setMyString(prev => {
-            return prev?.replace(/[.,!?]/g, "").split(" ").map((ele, idx) => {
-                return idx === 0 ?
-                    ele.toLowerCase()
-                    :
-                    ele.substring(0, 1).toUpperCase() + ele.substring(1).toLowerCase()
-            }).join("")
-        })
-    }
-
-    const handleKebabCase = () => {
-        toast.success("Converted to Kebab Case")
-
-        setMyString(prev => {
-            return prev?.replace(/[.,!?]/g, "").split(" ").map(ele => {
-                return ele.toLowerCase()
-            }).join("-")
-        })
-    }
-
-    const handleSnakeCase = () => {
-        toast.success("Converted to Snake Case")
-
-        setMyString(prev => {
-            return prev?.replace(/[.,!?]/g, "").split(" ").map(ele => {
-                return ele.toLowerCase()
-            }).join("_")
-        })
-    }
-
-    const handleReversePara = () => {
-        toast.success("Pragragraph is now reversed")
-
-        setMyString(prev => {
-            return prev?.split(" ").reverse().join(" ")
-        })
-    }
-
-    const handleReverseString = () => {
-        toast.success("String is now reversed")
-
-        setMyString(prev => {
-            return prev?.split("").reverse().join("")
-        })
-    }
-
-    const handleFixSpace = () => {
-        toast.success("Paragraph is fixed with space")
-
-        setMyString(prev => {
-            return prev.trim().replace(/\s+/g, " ")
-        })
-    }
-
-    const handleCopy = () => {
-        navigator.clipboard.writeText(myString);
-        toast.success("Text Copied!")
-    }
-
-    const handleClear = () => {
-        setMyString("")
-        toast.success("Text Cleared!")
-    }
+    const {
+        handleUpperCase, handleLowerCase, handleCapitilizeCase, handleCamelCase, handleKebabCase,
+        handleSnakeCase, handleReversePara, handleReverseString, handleFixSpace, handleCopy,
+        handleClear, handleTheme
+    } = useContext(FunctionContext)
 
     const [wordCount, setwordCount] = useState(0)
     useEffect(() => {
@@ -110,13 +29,6 @@ const Home = ({ setModalShow, myString, setMyString, theme, setTheme }) => {
             return Math.ceil(readingTime)
         })
     }, [wordCount])
-
-    const handleTheme = () => {
-        setTheme((prev) => {
-            localStorage.setItem('theme', prev === 'dark' ? 'light' : 'dark')
-            return prev === 'dark' ? 'light' : 'dark'
-        })
-    }
 
     return (
         <div className={`tw-p-4 ${theme === 'dark' ? 'tw-bg-[#252525]' : 'tw-bg-[#fff]'} tw-min-h-[100vh] tw-flex tw-flex-col`}>
@@ -159,7 +71,7 @@ const Home = ({ setModalShow, myString, setMyString, theme, setTheme }) => {
                 <Button varient={theme} name={'Reverse Paragraph'} onClick={handleReversePara} />
                 <Button varient={theme} name={'Reverse String'} onClick={handleReverseString} />
                 <Button varient={theme} name={'Fix Space'} onClick={handleFixSpace} />
-                <Button varient={theme} name={'Find & Replace'} onClick={() => setModalShow(true)} />
+                <Button varient={theme} name={'Find & Replace'} onClick={() => setShow(true)} />
             </div>
 
             <div className='mt-auto tw-flex flex-wrap py-3 xl:tw-justify-start md:tw-justify-between tw-justify-between'>

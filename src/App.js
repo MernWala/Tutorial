@@ -1,30 +1,20 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from 'react';
+import React from 'react';
 import Home from './pages/Home';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import FindReplaceModal from './components/FindReplaceModal';
+import DataState from './context/data/DataState';
+import FunctionState from './context/functions/FunctionState';
 
 const App = () => {
-
-  const [show, setShow] = useState(false)
-  const [myString, setMyString] = useState("")
-  const [theme, setTheme] = useState('dark')
-
-  const handleFindAndReplace = (find, replace) => {
-    setMyString(prev => {
-      return prev.replace(find, replace)
-    })
-
-    setShow(false)
-    toast.success(`Find: ${find} and Replace: ${replace}`)
-  }
-
   return (
-    <>
-      <Toaster />
-      <Home modalShow={show} setModalShow={setShow} myString={myString} setMyString={setMyString} theme={theme} setTheme={setTheme} />
-      <FindReplaceModal show={show} setShow={setShow} handleFindAndReplace={handleFindAndReplace} />
-    </>
+    <DataState>
+      <FunctionState>
+        <Toaster />
+        <Home />
+        <FindReplaceModal />
+      </FunctionState>
+    </DataState>
   )
 }
 

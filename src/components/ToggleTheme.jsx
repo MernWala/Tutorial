@@ -6,7 +6,9 @@ const ToggleTheme = (props) => {
   return (
     <button type='button' onClick={props.onClick} className={`
       ${props?.theme === 'dark' ?
-        'tw-bg-[#3A3A3A] hover:tw-bg-[#2e2e2e] tw-text-white' : 'tw-bg-[#d9d9d9] hover:tw-bg-[#d6d6d6] tw-text-[#333333]'
+        'tw-bg-[#3A3A3A] hover:tw-bg-[#2e2e2e] tw-text-white'
+        :
+        'tw-bg-[#d9d9d9] hover:tw-bg-[#d6d6d6] tw-text-[#333333]'
       }
       tw-p-3
       tw-rounded-r-full
