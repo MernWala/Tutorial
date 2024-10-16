@@ -3,6 +3,7 @@ import Button from '../components/Button'
 import ToggleTheme from '../components/ToggleTheme'
 import DataContext from '../context/data/DataContext'
 import FunctionContext from '../context/functions/FunctionContext'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
 
@@ -73,6 +74,8 @@ const Home = () => {
                 <Button varient={theme} name={'Fix Space'} onClick={handleFixSpace} />
                 <Button varient={theme} name={'Find & Replace'} onClick={() => setShow(true)} />
             </div>
+
+                        <Link to="/about">Navigate to About</Link>
 
             <div className='mt-auto tw-flex flex-wrap py-3 xl:tw-justify-start md:tw-justify-between tw-justify-between'>
                 <div className='xl:tw-hidden md:tw-block block'>
