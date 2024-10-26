@@ -16,7 +16,7 @@ const FindReplaceModal = () => {
     }
 
     return (
-        <Modal show={show} onHide={() => setShow(show)} style={{ backdropFilter: 'blur(5px) brightness(.5)' }}>
+        <Modal show={show} onHide={() => setShow(!show)} style={{ backdropFilter: 'blur(5px) brightness(.5)' }}>
             <Modal.Header closeButton className={`!tw-py-1 !tw-bg-blue-600`}>
                 <Modal.Title className='!tw-text-white !tw-text-xl !tw-tracking-wide'>Find & Replace</Modal.Title>
             </Modal.Header>

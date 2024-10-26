@@ -3,7 +3,6 @@ import Button from '../components/Button'
 import ToggleTheme from '../components/ToggleTheme'
 import DataContext from '../context/data/DataContext'
 import FunctionContext from '../context/functions/FunctionContext'
-import { Link } from 'react-router-dom'
 
 const Home = () => {
 
@@ -30,6 +29,59 @@ const Home = () => {
             return Math.ceil(readingTime)
         })
     }, [wordCount])
+
+    const [actionButtons] = useState([
+        {
+            id: 1,
+            name: 'Uppercase',
+            onClick: handleUpperCase
+        },
+        {
+            id: 2,
+            name: 'Lowercse',
+            onClick: handleLowerCase
+        },
+        {
+            id: 3,
+            name: 'Capitilize Word',
+            onClick: handleCapitilizeCase
+        },
+        {
+            id: 4,
+            name: 'Camel Case',
+            onClick: handleCamelCase
+        },
+        {
+            id: 5,
+            name: 'Kebab Case',
+            onClick: handleKebabCase
+        },
+        {
+            id: 6,
+            name: 'Snake Case',
+            onClick: handleSnakeCase
+        },
+        {
+            id: 7,
+            name: 'Reverse Paragraph',
+            onClick: handleReversePara
+        },
+        {
+            id: 8,
+            name: 'Reverse String',
+            onClick: handleReverseString
+        },
+        {
+            id: 9,
+            name: 'Fix Space',
+            onClick: handleFixSpace
+        },
+        {
+            id: 10,
+            name: 'Find & Replace',
+            onClick: () => setShow(true)
+        }
+    ])
 
     return (
         <div className={`tw-p-4 ${theme === 'dark' ? 'tw-bg-[#252525]' : 'tw-bg-[#fff]'} tw-min-h-[100vh] tw-flex tw-flex-col`}>
@@ -63,19 +115,12 @@ const Home = () => {
             </div>
 
             <div className='tw-flex-wrap tw-gap-3 tw-flex tw-mt-4 tw-justify-stretch'>
-                <Button varient={theme} name={'Uppercase'} onClick={handleUpperCase} />
-                <Button varient={theme} name={'Lowercase'} onClick={handleLowerCase} />
-                <Button varient={theme} name={'Capitalize Word'} onClick={handleCapitilizeCase} />
-                <Button varient={theme} name={'Camel Case'} onClick={handleCamelCase} />
-                <Button varient={theme} name={'Kebab Case'} onClick={handleKebabCase} />
-                <Button varient={theme} name={'Snake Case'} onClick={handleSnakeCase} />
-                <Button varient={theme} name={'Reverse Paragraph'} onClick={handleReversePara} />
-                <Button varient={theme} name={'Reverse String'} onClick={handleReverseString} />
-                <Button varient={theme} name={'Fix Space'} onClick={handleFixSpace} />
-                <Button varient={theme} name={'Find & Replace'} onClick={() => setShow(true)} />
+                {actionButtons.map(button => {
+                    return (
+                        <Button key={`action-buttons-${button.id}`} varient={theme} name={button.name} onClick={button.onClick} />
+                    )
+                })}
             </div>
-
-                        <Link to="/about">Navigate to About</Link>
 
             <div className='mt-auto tw-flex flex-wrap py-3 xl:tw-justify-start md:tw-justify-between tw-justify-between'>
                 <div className='xl:tw-hidden md:tw-block block'>

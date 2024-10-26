@@ -96,7 +96,7 @@ const FunctionState = (props) => {
 
     const handleFindAndReplace = (find, replace) => {
         setMyString(prev => {
-            return prev.replace(find, replace)
+            return prev.replaceAll(find, replace)
         })
 
         setShow(false)
