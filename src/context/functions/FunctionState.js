@@ -9,12 +9,16 @@ const FunctionState = (props) => {
 
     const handleUpperCase = () => {
         toast.success("Converted to Uppercase")
-        setMyString(myString.toUpperCase())
+        setMyString(prev => {
+            return prev.toUpperCase()
+        })
     }
 
     const handleLowerCase = () => {
         toast.success("Converted to Lowercase")
-        setMyString(myString.toLowerCase())
+        setMyString(prev => {
+            return prev.toLowerCase()
+        })
     }
 
     const handleCapitilizeCase = () => {

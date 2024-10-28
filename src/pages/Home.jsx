@@ -38,7 +38,7 @@ const Home = () => {
         },
         {
             id: 2,
-            name: 'Lowercse',
+            name: 'Lowercase',
             onClick: handleLowerCase
         },
         {
