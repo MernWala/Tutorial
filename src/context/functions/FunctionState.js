@@ -114,11 +114,26 @@ const FunctionState = (props) => {
         })
     }
 
+    const handleHtmlFriendly = () => {
+        console.log("hello");
+        setMyString((prev) => {
+            return prev
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/className=/g, "class=")
+                .replace(/\(/g, "&#40;")
+                .replace(/\)/g, "&#41;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;")
+                .replace(/\//g, "&#47;");
+        });
+    };    
+
     return (
         <FunctionContext.Provider value={{
             handleUpperCase, handleLowerCase, handleCapitilizeCase, handleCamelCase, handleKebabCase,
             handleSnakeCase, handleReversePara, handleReverseString, handleFixSpace, handleCopy,
-            handleClear, handleFindAndReplace, handleTheme
+            handleClear, handleFindAndReplace, handleTheme, handleHtmlFriendly
         }}>
             {props.children}
         </FunctionContext.Provider>

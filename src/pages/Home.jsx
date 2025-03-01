@@ -13,7 +13,7 @@ const Home = () => {
     const {
         handleUpperCase, handleLowerCase, handleCapitilizeCase, handleCamelCase, handleKebabCase,
         handleSnakeCase, handleReversePara, handleReverseString, handleFixSpace, handleCopy,
-        handleClear, handleTheme
+        handleClear, handleTheme, handleHtmlFriendly
     } = useContext(FunctionContext)
 
     const [wordCount, setwordCount] = useState(0)
@@ -80,7 +80,12 @@ const Home = () => {
             id: 10,
             name: 'Find & Replace',
             onClick: () => setShow(true)
-        }
+        },
+        {
+            id: 11,
+            name: 'HTML Friendly',
+            onClick: handleHtmlFriendly
+        },
     ])
 
     return (
